@@ -1180,7 +1180,7 @@ export default class Drawflow {
     return nodes;
   }
 
-  addNode (name, num_in, num_out, ele_pos_x, ele_pos_y, classoverride, data, html, typenode = false) {
+  addNode (name, inputDatas, outputDatas, ele_pos_x, ele_pos_y, classoverride, data, html, typenode = false) {
     if (this.useuuid) {
       var newNodeId = this.getUuid();
     } else {
@@ -1204,19 +1204,29 @@ export default class Drawflow {
     outputs.classList.add("outputs");
 
     const json_inputs = {}
-    for(var x = 0; x < num_in; x++) {
+    for(var x = 0; x < inputDatas.length; x++) {
       const input = document.createElement('div');
       input.classList.add("input");
       input.classList.add("input_"+(x+1));
+      const inputName = document.createElement('div');
+      inputName.classList.add("input-name");
+      inputName.title = inputDatas[x].name;
+      inputName.innerHTML = inputDatas[x].name;
+      input.appendChild(inputName);
       json_inputs["input_"+(x+1)] = { "connections": []};
       inputs.appendChild(input);
     }
 
     const json_outputs = {}
-    for(var x = 0; x < num_out; x++) {
+    for(var x = 0; x < outputDatas.length; x++) {
       const output = document.createElement('div');
       output.classList.add("output");
       output.classList.add("output_"+(x+1));
+      const outputName = document.createElement('div');
+      outputName.innerHTML = outputDatas[x].name;
+      outputName.title = outputDatas[x].name;
+      outputName.classList.add("output-name")
+      output.appendChild(outputName);
       json_outputs["output_"+(x+1)] = { "connections": []};
       outputs.appendChild(output);
     }

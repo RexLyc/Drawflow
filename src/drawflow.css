@@ -139,3 +139,23 @@
   right: -15px;
   top: -15px;
 }
+
+.drawflow .drawflow-node .output .output-name {
+  right: calc(var(--dfInputWidth) + 3px);
+  max-width: 60px;
+  width: fit-content;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position:absolute;
+}
+
+.drawflow .drawflow-node .input .input-name {
+  left: calc(var(--dfInputWidth) + 3px);
+  max-width: 60px;
+  width: fit-content;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position:absolute;
+}
