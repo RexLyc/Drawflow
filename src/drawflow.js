@@ -175,6 +175,10 @@ export default class Drawflow {
 
   click(e) {
     this.dispatch('click', e);
+    if(e.button==2){
+      // give up right mouse button click
+      return true;
+    }
     if(this.editor_mode === 'fixed') {
       //return false;
        e.preventDefault();
