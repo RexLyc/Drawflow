@@ -1059,6 +1059,7 @@ export default class Drawflow {
   }
 
   dblclick(e) {
+    this.dispatch('dblclick',e);
     if(this.connection_selected != null && this.reroute) {
         this.createReroutePoint(this.connection_selected);
     }
