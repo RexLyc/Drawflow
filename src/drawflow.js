@@ -1209,27 +1209,27 @@ export default class Drawflow {
     outputs.classList.add("outputs");
 
     const json_inputs = {}
-    for(var x = 0; x < inputDatas.length; x++) {
+    for(var x = 0; x < inputDatas.params.length; x++) {
       const input = document.createElement('div');
       input.classList.add("input");
       input.classList.add("input_"+(x+1));
       const inputName = document.createElement('div');
       inputName.classList.add("input-name");
-      inputName.title = inputDatas[x].name;
-      inputName.innerHTML = inputDatas[x].name;
+      inputName.title = inputDatas.params[x].paramName;
+      inputName.innerHTML = inputDatas.params[x].paramName;
       input.appendChild(inputName);
       json_inputs["input_"+(x+1)] = { "connections": []};
       inputs.appendChild(input);
     }
 
     const json_outputs = {}
-    for(var x = 0; x < outputDatas.length; x++) {
+    for(var x = 0; x < outputDatas.params.length; x++) {
       const output = document.createElement('div');
       output.classList.add("output");
       output.classList.add("output_"+(x+1));
       const outputName = document.createElement('div');
-      outputName.innerHTML = outputDatas[x].name;
-      outputName.title = outputDatas[x].name;
+      outputName.innerHTML = outputDatas.params[x].paramName;
+      outputName.title = outputDatas.params[x].paramName;
       outputName.classList.add("output-name")
       output.appendChild(outputName);
       json_outputs["output_"+(x+1)] = { "connections": []};

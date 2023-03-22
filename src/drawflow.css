@@ -141,8 +141,8 @@
 }
 
 .drawflow .drawflow-node .output .output-name {
-  right: calc(var(--dfInputWidth) + 3px);
-  max-width: 60px;
+  right: calc(var(--dfInputWidth) + 5px);
+  max-width: 100px;
   width: fit-content;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -151,8 +151,8 @@
 }
 
 .drawflow .drawflow-node .input .input-name {
-  left: calc(var(--dfInputWidth) + 3px);
-  max-width: 60px;
+  left: calc(var(--dfInputWidth) + 5px);
+  max-width: 100px;
   width: fit-content;
   overflow: hidden;
   text-overflow: ellipsis;
