@@ -1215,6 +1215,8 @@ export default class Drawflow {
       input.classList.add("input_"+(x+1));
       const inputName = document.createElement('div');
       inputName.classList.add("input-name");
+      for(let category of inputDatas.params[x].paramCategory)
+        input.classList.add(category)
       inputName.title = inputDatas.params[x].paramName;
       inputName.innerHTML = inputDatas.params[x].paramName;
       input.appendChild(inputName);
@@ -1230,7 +1232,9 @@ export default class Drawflow {
       const outputName = document.createElement('div');
       outputName.innerHTML = outputDatas.params[x].paramName;
       outputName.title = outputDatas.params[x].paramName;
-      outputName.classList.add("output-name")
+      outputName.classList.add("output-name");
+      for(let category of outputDatas.params[x].paramCategory)
+        output.classList.add(category)
       output.appendChild(outputName);
       json_outputs["output_"+(x+1)] = { "connections": []};
       outputs.appendChild(output);

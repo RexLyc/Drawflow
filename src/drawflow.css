@@ -159,3 +159,9 @@
   white-space: nowrap;
   position:absolute;
 }
+
+.incompatible_param {
+  visibility: hidden;
+  /* transition: all 500ms linear;
+  opacity: 0; */
+}
