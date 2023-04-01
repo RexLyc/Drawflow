@@ -1974,15 +1974,52 @@ export default class Drawflow {
     const node = document.getElementById('node-'+id);
     const content = node.getElementsByClassName('drawflow_content_node');
     content[0].innerHTML = html;
-    const input = node.getElementsByClassName('input');
-    for(let index=0;index!=input.length;++index){
-      const inputName = input[index].getElementsByClassName('input-name')[0];
-      inputName.innerHTML = inputs.params[index].paramName;
+    let input = node.getElementsByClassName('input');
+    let originInputLength = input.length;
+    for(let i=0;i<inputs.params.length-originInputLength;++i){
+      this.addNodeInput(id);
+      const newInput = input[originInputLength + i];
+      const inputName = document.createElement('div');
+      inputName.classList.add("input-name");
+      for(const category of inputs.params[i+originInputLength].categoryNames)
+        newInput.classList.add(category)
+      inputName.title = inputs.params[i+originInputLength].paramName;
+      inputName.innerHTML = inputs.params[i+originInputLength].paramName;
+      newInput.appendChild(inputName);
     }
-    const output = node.getElementsByClassName('output');
-    for(let index=0;index!=output.length;++index){
-      const outputName = output[index].getElementsByClassName('output-name')[0];
-      outputName.innerHTML = outputs.params[index].paramName;
+    originInputLength = input.length;
+    for(let index=0;index!=originInputLength;++index){
+      if(inputs.params.length<=index){
+        // 删除
+        this.removeNodeInput(id,'input_'+(index+1))
+      } else {
+        const inputName = input[index].getElementsByClassName('input-name')[0];
+        inputName.innerHTML = inputs.params[index].paramName;
+      }
+    }
+    // 更新输出
+    let output = node.getElementsByClassName('output');
+    let originOutputLength = output.length;
+    for(let i=0;i<outputs.params.length-originOutputLength;++i){
+      this.addNodeOutput(id);
+      const newOutput = output[originOutputLength + i];
+      const outputName = document.createElement('div');
+      outputName.classList.add("output-name");
+      for(const category of outputs.params[i+originOutputLength].categoryNames)
+        newOutput.classList.add(category)
+      outputName.title = outputs.params[i+originOutputLength].paramName;
+      outputName.innerHTML = outputs.params[i+originOutputLength].paramName;
+      newOutput.appendChild(outputName);
+    }
+    originOutputLength = output.length;
+    for(let index=0;index!=originOutputLength;++index){
+      if(outputs.params.length<=index){
+        // 删除
+        this.removeNodeOutput(id,'output_'+(index+1))
+      } else {
+        const outputName = output[index].getElementsByClassName('output-name')[0];
+        outputName.innerHTML = outputs.params[index].paramName;
+      }
     }
   }
 }
